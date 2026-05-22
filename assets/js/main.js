@@ -24,3 +24,13 @@ document.querySelectorAll('[data-lang]').forEach(flag => {
     });
   });
 });
+
+const avatar = document.querySelector('.avatar');
+
+avatar.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+
+avatar.addEventListener('dragstart', function(e) {
+  e.preventDefault();
+});
