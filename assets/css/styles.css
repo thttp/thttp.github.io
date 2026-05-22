@@ -1071,6 +1071,14 @@ article.overview:hover {
   padding-bottom: var(--spacing-2);
 }
 
+.feed .text p {
+  margin-bottom: 1.3em;
+}
+
+.feed .text p:last-child {
+  margin-bottom: 0;
+}
+
 /*
 .feed article .date {
   color: var(--blank);
