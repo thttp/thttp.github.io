@@ -14,6 +14,7 @@ body.loaded {
   bottom: 0;
 }
 
+/* Lazy loading */
 .lazy:not(.initial) {
   opacity: var(--placeholder-opacity);
   transition: opacity var(--fade-animation) ease-out;
@@ -71,6 +72,7 @@ main {
   }
 }
 
+/* Selection */
 
 ::-moz-selection {
   color: var(--white);
@@ -93,6 +95,7 @@ main {
 
 /* == General ========================================================================= */
 
+/* Disable scrollbars */
 *::-webkit-scrollbar {
   display: none;
 }
@@ -102,6 +105,7 @@ main {
   scrollbar-width: none;
 }
 
+/* Paragraphs */
 p {
   margin: 0;
   padding: 0;
@@ -111,6 +115,7 @@ p:not(:last-child) {
   margin-bottom: var(--spacing-4);
 }
 
+/* Inline code */
 code:not([class^=language-]) {
   background-color: var(--background-code-inline);
   border-radius: var(--code-inline-border-radius);
@@ -471,6 +476,7 @@ section {
   }
 }
 
+/* Metadata */
 
 section .metadata {
   color: var(--black);
@@ -552,6 +558,7 @@ article {
   }
 }
 
+/* Card header */
 article .header {
   background-color: var(--black);
   color: var(--white);
@@ -584,6 +591,7 @@ article .header .origin {
   opacity: var(--secondary-opacity);
 }
 
+/* Card body */
 article .body {
   background-color: var(--white);
   color: var(--black);
@@ -606,6 +614,7 @@ article .body hr {
   margin: var(--spacing-3) calc(-1 * var(--spacing-2));
 }
 
+/* Card repository */
 article .body .github .calendar {
   display: flex;
   justify-content: space-between;
@@ -662,6 +671,7 @@ article .frame img,
 article .text video,
 article .text img {
   width: 100%;
+  /*filter: sepia(var(--sepia-ratio)); *//* To keep ? */
 }
 
 article .text .center {
@@ -695,6 +705,7 @@ article.warn .body {
   background-color: var(--warn-alt);
 }
 
+/* Card iframes */
 article .frame .wrapper {
   position: relative;
   padding-bottom: 56.25%;
@@ -1113,6 +1124,7 @@ article.overview:hover {
 
 /* == Transitions ========================================================================= */
 
+/* Fade */
 .fade-move,
 .fade-enter-active,
 .fade-leave-active {
@@ -1133,6 +1145,7 @@ article.overview:hover {
   opacity: 0 !important;
 }
 
+/* Translation from right */
 
 .from-right-move,
 .from-right-enter-active,
@@ -1150,6 +1163,7 @@ article.overview:hover {
   display: none;
 }
 
+/* Construction */
 
 #construction {
   background-color: var(--warn-alt);

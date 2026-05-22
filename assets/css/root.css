@@ -1,39 +1,48 @@
+/* Variables */
 :root {
+  /* Colors */
   --black: #4B4A3F;
   --white: #D7D2B8;
   --gray: #B3AE99;
   --blank: #E9E9E9;
 
+  /* Text colors */
   --error: #BE7F74;
   --warn: #C0B496;
   --warn-alt: #E6DDAF;
   --link: #003A6B;
   --link-hover: #477698;
 
+  /* Shadow colors */
   --shadow: rgba(75, 74, 63, .6);
   --shadow-light: rgba(75, 74, 63, .2);
 
+  /* Background */
   --background: #CBC7AF;
   --background-loader: #000;
   --background-code: #1a1b26;
   --background-code-inline: #CBC7AE;
 
+  /* Text size */
   --font-small: .7rem;
   --font-tall: 1.3rem;
   --font-taller: 1.6rem;
   --font-tallest: 2.4rem;
   --font-tag: .9rem;
 
+  /* Icon sizes */
   --icon-size:  16px;
   --icon-tag-size: 12px;
   --icon-button-size: 22px;
 
+  /* Border sizes */
   --border-thin: 1px;
   --border-normal: 2px;
   --border-thick: 3px;
   --border-xxthick: 8px;
   --border-xxxthick: 16px;
 
+  /* Spacing */
   --spacing-1: 2px;
   --spacing-2: 4px;
   --spacing-3: 8px;
@@ -44,6 +53,7 @@
   --spacing-8: 28px;
   --spacing-9: 32px;
 
+  /* Animations */
   --button-select-animation: .5s;
   --button-flash-animation: 2s;
   --loading-bar-animation: .1;
@@ -57,24 +67,32 @@
   --fade-link-delay: .05s;
   --social-link-hover-animation: .2s;
 
+  /* Opacity */
   --secondary-opacity: .75;
   --disabled-opacity: .35;
   --placeholder-opacity: .2;
 
+  /* Filters */
   --sepia-ratio: 50%;
 
+  /* Buttons */
   --button-min-width: 140px;
   --button-minimize-border-radius: 8px;
 
+  /* Tags */
   --tag-border-radius: 12px;
 
+  /* Inline code */
   --code-inline-border-radius: 4px;
 
+  /* Loading bar */
   --loading-bar-size: 18rem;
 
+  /* Epsilon */
   --e: 4.9406564584124654e-322;
 }
 
+/* Body */
 html {
   --webkit-text-size-adjust: 100%;
 }
@@ -98,6 +116,7 @@ body {
   background-size: 4px 4px;
 }
 
+/* Links */
 a,
 a:visited {
   color: var(--link);
@@ -109,6 +128,7 @@ a:hover {
   color: var(--link-hover);
 }
 
+/* Loader */
 #loader {
   color: var(--white);
   position: fixed;
@@ -123,6 +143,7 @@ a:hover {
   z-index: -1;
 }
 
+/* Unsupported browser */
 #unsupported {
   margin: auto;
   padding: var(--spacing-4);
@@ -143,6 +164,7 @@ a:hover {
   opacity: var(--disabled-opacity);
 }
 
+/* Loader bar and text */
 #loader-bar {
   width: 70vw;
   max-width: var(--loading-bar-size);
