@@ -1,4 +1,7 @@
 /* == Loader ========================================================================= */
+body {
+  visibility: hidden;
+}
 
 body.loaded {
   background-color: var(--background);
