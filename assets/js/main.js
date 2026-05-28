@@ -1,10 +1,10 @@
-import { initTime } from './modules/time.js';
-import { initProfile } from './modules/profile.js';
-import { initLoading } from './modules/loading.js';
-import { initLang } from './modules/lang.js';
-import { initTabs } from './modules/tabs.js';
+import { initTime }           from './modules/time.js';
+import { initProfile }        from './modules/profile.js';
+import { initLoading, initResumeLoading } from './modules/loading.js';
+import { initLang }           from './modules/lang.js';
+import { initTabs }           from './modules/tabs.js';
 
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
 
   const header = document.querySelector('.title');
 
@@ -15,13 +15,15 @@ window.addEventListener('load', () => {
     memory: { en: 'Memory', pt: 'Memória' }
   };
 
+  await initLoading();
+
+  document.body.classList.add('loaded');
+  document.body.style.visibility = 'visible';
+
   initTime();
   initProfile();
-  initLoading();
-
+  initResumeLoading();
   initLang(header, tabNames);
   initTabs(header, tabNames);
-
-  document.body.style.visibility = 'visible';
 
 });

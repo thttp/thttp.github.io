@@ -3,6 +3,10 @@ body {
   visibility: hidden;
 }
 
+#loader {
+  visibility: visible;
+}
+
 body.loaded {
   background-color: var(--background);
   background-image: url("/as/v4/css/background.svg");
