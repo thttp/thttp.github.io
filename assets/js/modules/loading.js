@@ -49,7 +49,7 @@ export function initLoading() {
       if (current >= total) {
         clearInterval(interval);
         setTimeout(() => {
-          if (loader) loader.style.zIndex = '-1';
+          if (loader) loader.style.display = 'none';
           resolve();
         }, 300);
       }

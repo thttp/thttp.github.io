@@ -5,6 +5,11 @@ export function initLang(header, tabNames) {
   const langButtons = document.querySelectorAll('[data-lang]');
   const translatableElements = document.querySelectorAll('[data-en]');
 
+  const resumeUrls = {
+    en: '/resume/resume.html',
+    pt: '/resume/curriculo.html',
+  };
+
   function applyLanguage(lang) {
     setState({ lang });
 
@@ -19,6 +24,11 @@ export function initLang(header, tabNames) {
         el.getAttribute('data-' + lang) ||
         el.getAttribute('data-en');
     });
+
+    const iframe = document.getElementById('resume-iframe');
+    if (iframe && resumeUrls[lang]) {
+      iframe.src = resumeUrls[lang];
+    }
 
     const { tab } = getState();
 
