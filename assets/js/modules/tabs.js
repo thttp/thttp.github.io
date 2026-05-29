@@ -2,7 +2,7 @@ import { setState, getState } from './store.js';
 
 export function initTabs(header, tabNames) {
 
-  const buttons = document.querySelectorAll('.button[data-tab]');
+  const buttons  = document.querySelectorAll('.button[data-tab]');
   const contents = document.querySelectorAll('[data-tab-content]');
 
   function applyTab(tab) {
@@ -22,6 +22,11 @@ export function initTabs(header, tabNames) {
 
     if (header) {
       header.textContent = tabNames[tab]?.[lang] || tab;
+
+      // Restartar animação do título a cada troca de aba
+      header.style.animation = 'none';
+      header.offsetWidth; // força reflow
+      header.style.animation = '';
     }
 
     window.history.pushState({}, '', `?tab=${tab}`);
