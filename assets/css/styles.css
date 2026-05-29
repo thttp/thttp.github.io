@@ -871,18 +871,33 @@ article.overview:hover {
 
 .links {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 120px));
   gap: var(--spacing-5);
 }
 
 .links a {
   aspect-ratio: 1;
   background-color: var(--white);
+  opacity: 0;
+  animation: link-fade-in var(--fade-animation) ease-out forwards;
+  animation-delay: inherit;
+}
+
+@keyframes link-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--spacing-3));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .links a.disabled {
   cursor: not-allowed;
   opacity: var(--disabled-opacity);
+  animation: none;
 }
 
 .links a article {
