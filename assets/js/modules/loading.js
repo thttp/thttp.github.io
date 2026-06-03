@@ -1,3 +1,60 @@
+function startTriangleTransition(onComplete) {
+  const COLS    = 16;
+  const ROWS    = 8;
+  const SIZE    = 125;
+  const MAX_DEL = 0.4;
+  const FINISH  = (MAX_DEL + 0.1) * 1000;
+
+  const svgNS = 'http://www.w3.org/2000/svg';
+
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes tri-fade { from { opacity: 0; } to { opacity: 1; } }
+    .tri-poly {
+      opacity: 0;
+      fill: var(--background);
+      stroke: var(--background);
+      animation: tri-fade 0.04s forwards;
+    }
+  `;
+  document.head.appendChild(style);
+
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed;inset:0;z-index:1001;visibility:visible;pointer-events:none;overflow:hidden';
+
+  const svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('width',  '2000');
+  svg.setAttribute('height', '1000');
+
+  for (let y = 0; y < ROWS; y++) {
+    for (let x = 0; x < COLS; x++) {
+      const even = x % 2;
+      const yOff = y % 2;
+      const x0   = (x + 0) * SIZE + yOff * SIZE - 2 * SIZE;
+      const x1   = (x + 1) * SIZE + yOff * SIZE - 2 * SIZE;
+      const x2   = (x + 2) * SIZE + yOff * SIZE - 2 * SIZE;
+      const y0   = y * SIZE + ( even) * SIZE;
+      const y1   = y * SIZE + (!even) * SIZE;
+
+      const poly = document.createElementNS(svgNS, 'polygon');
+      poly.setAttribute('points', `${x0},${y0} ${x1},${y1} ${x2},${y0}`);
+      poly.classList.add('tri-poly');
+      poly.style.animationDelay = `${(MAX_DEL * Math.random()).toFixed(3)}s`;
+
+      svg.appendChild(poly);
+    }
+  }
+
+  wrap.appendChild(svg);
+  document.body.appendChild(wrap);
+
+  setTimeout(() => {
+    wrap.remove();
+    style.remove();
+    onComplete();
+  }, (MAX_DEL + 0.15) * 1000);
+}
+
 export function initLoading() {
   const loader = document.getElementById('loader');
   const bar    = document.querySelector('#loader-bar > div');
@@ -55,10 +112,10 @@ export function initLoading() {
 
       if (current >= total) {
         clearInterval(interval);
-        setTimeout(() => {
+        startTriangleTransition(() => {
           if (loader) loader.style.display = 'none';
           resolve();
-        }, 300);
+        });
       }
     }, stepTime);
   });
