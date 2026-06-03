@@ -3,24 +3,31 @@ export function initLoading() {
   const bar    = document.querySelector('#loader-bar > div');
   const textEl = document.getElementById('loader-text');
 
+  const resources = performance.getEntriesByType('resource');
+
+  const resourceMessages = resources
+    .filter(r => {
+      try {
+        const url = new URL(r.name);
+        return url.hostname === location.hostname;
+      } catch {
+        return false;
+      }
+    })
+    .map(r => {
+      const path = new URL(r.name).pathname;
+      const ms   = Math.round(r.duration);
+      return { ms, text: `[${String(ms).padStart(6)}] ${path}` };
+    })
+    .sort((a, b) => b.ms - a.ms);
+
+  const maxMs = resourceMessages[0]?.ms ?? 100;
+
   const messages = [
-    '[   635] starting app...',
-    '[   572] mounting app...',
-    '[   571] creating app...',
-    '[   570] /content/pt-en.json',
-    '[   214] loading content resources...',
-    '[   178] /assets/js/main.js',
-    '[   124] /assets/js/modules/tabs.js',
-    '[    98] /assets/js/modules/lang.js',
-    '[    76] /assets/js/modules/time.js',
-    '[    57] /assets/js/modules/store.js',
-    '[    54] /assets/js/modules/profile.js',
-    '[    32] /assets/js/modules/loading.js',
-    '[    18] /assets/css/tokyo-night-dark.min.css',
-    '[     9] loading additional resources...',
-    '[     6] /assets/css/styles.css',
-    '[     4] /assets/css/root.css',
-    '[     3] /index.html',
+    `[${String(maxMs + 80).padStart(6)}] starting app...`,
+    `[${String(maxMs + 40).padStart(6)}] mounting app...`,
+    `[${String(maxMs + 20).padStart(6)}] creating app...`,
+    ...resourceMessages.map(r => r.text),
     '[     3] loading minimal resources...',
     '[     1] booting',
   ];
