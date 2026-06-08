@@ -16,16 +16,21 @@ export function initTabs(header, tabNames) {
     contents.forEach(c => c.style.display = 'none');
 
     const target = Array.from(contents).find(c => c.dataset.tabContent === tab);
-    if (target) target.style.display = '';
+    if (target) {
+      target.style.display = '';
+
+      target.style.animation = 'none';
+      target.offsetWidth;
+      target.style.animation = '';
+    }
 
     const { lang } = getState();
 
     if (header) {
       header.textContent = tabNames[tab]?.[lang] || tab;
 
-      // Restartar animação do título a cada troca de aba
       header.style.animation = 'none';
-      header.offsetWidth; // força reflow
+      header.offsetWidth;
       header.style.animation = '';
     }
 
